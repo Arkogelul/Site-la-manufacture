@@ -1,7 +1,7 @@
 /* ============ CONFIG ============ */
 const SHEET_ID     = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms'; // ID de votre classeur
 const ACTUS_GID    = '0';            // onglet « actus » (premier onglet)
-const SECTIONS_GID = '197731574';    // gid réel de l’onglet « sections »
+const SECTIONS_GID = '197731547';    // gid réel de l’onglet « sections »
 
 /* -------- helpers -------- */
 const csvUrl = gid =>
