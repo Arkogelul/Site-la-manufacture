@@ -80,6 +80,7 @@ async function loadSections(){
 
     /* on vide la section si rechargement, puis on injecte */
     sec.replaceChildren(article, media);
+    sec.classList.add('section-loaded');
   });
 }
 
