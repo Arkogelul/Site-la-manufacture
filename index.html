@@ -1,79 +1,109 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Manufacture</title>
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
-  <!-- style perso -->
+  <!-- CSS perso -->
   <link rel="stylesheet" href="main.css">
 </head>
-<body class="font-sans bg-white text-black">
 
-  <!-- ===== NAV ===== -->
-  <nav class="hidden md:flex fixed top-0 left-0 w-full justify-center space-x-10
-              uppercase text-sm font-semibold py-4 z-50 text-white">
-    <a href="#formations-pro" class="hover:text-gray-300">Formations Pro</a>
-    <a href="#masters"        class="hover:text-gray-300">Masters / Workshops</a>
-    <a href="#danse-etudes"   class="hover:text-gray-300">Danse-Études</a>
-    <a href="#contact"        class="hover:text-gray-300">Contact</a>
+<body class="font-sans bg-white text-black selection:bg-black/80 selection:text-white">
+
+  <!-- =========== NAV DESKTOP =========== -->
+  <nav
+    class="fixed inset-x-0 top-0 z-50 hidden md:flex justify-center space-x-10
+           uppercase text-sm font-semibold py-4 text-white/80 backdrop-blur">
+    <a href="#formations-pro" class="hover:text-white transition-colors">Formations Pro</a>
+    <a href="#masters"        class="hover:text-white transition-colors">Masters / Workshops</a>
+    <a href="#danse-etudes"   class="hover:text-white transition-colors">Danse-Études</a>
+    <a href="#contact"        class="hover:text-white transition-colors">Contact</a>
   </nav>
 
-  <!-- ===== HAMBURGER (mobile) ===== -->
+  <!-- =========== HAMBURGER MOBILE =========== -->
   <button id="hamburger"
-          class="fixed top-4 left-4 z-50 p-2 rounded shadow bg-white/80 md:hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-         viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+          class="fixed top-4 left-4 z-[60] p-2 rounded shadow bg-white/80 md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
     </svg>
   </button>
 
-  <!-- ===== MENU MOBILE ===== -->
   <aside id="mobile-menu"
-         class="fixed top-0 left-0 h-full w-64 bg-white z-40 transform -translate-x-full
-                transition-transform duration-300 p-6 pt-20 space-y-6 md:hidden">
-    <a href="#formations-pro" class="block py-2">Formations Pro</a>
-    <a href="#masters"        class="block py-2">Masters / Workshops</a>
-    <a href="#danse-etudes"   class="block py-2">Danse-Études</a>
-    <a href="#contact"        class="block py-2">Contact</a>
+         class="fixed top-0 left-0 h-full w-64 bg-white z-50 pt-20 p-6 space-y-6
+                -translate-x-full transition-transform duration-300 md:hidden">
+    <a href="#formations-pro" class="block py-2 font-semibold">Formations Pro</a>
+    <a href="#masters"        class="block py-2 font-semibold">Masters / Workshops</a>
+    <a href="#danse-etudes"   class="block py-2 font-semibold">Danse-Études</a>
+    <a href="#contact"        class="block py-2 font-semibold">Contact</a>
   </aside>
 
-  <!-- ===== HERO / HEADER (ton contenu) ===== -->
-  <!-- … -->
+  <!-- =========== HERO =========== -->
+  <header class="relative h-screen flex items-center justify-center text-white text-center">
+    <!-- vidéo de fond -->
+    <video class="absolute inset-0 w-full h-full object-cover -z-10"
+           autoplay muted loop playsinline>
+      <source src="videos/tiffaine.mp4" type="video/mp4">
+    </video>
 
-  <!-- ===== ACTUALITÉS (existant) ===== -->
+    <!-- contenu -->
+    <div class="space-y-4 px-4">
+      <img src="images/LOGO_LA-MANUFACTURE_BLANC.png"
+           alt="Logo La Manufacture"
+           class="mx-auto w-40 lg:w-60 drop-shadow-lg">
+      <h1 class="text-5xl md:text-6xl font-bold uppercase">La Manufacture</h1>
+      <p class="text-xl md:text-2xl italic">Vision & Identité Artistique</p>
+    </div>
+
+    <!-- voile -->
+    <div class="absolute inset-0 bg-black/50 -z-20"></div>
+  </header>
+
+  <!-- =========== ACTUALITÉS =========== -->
   <section id="actus" class="py-16 bg-gray-50">
-    <h2 class="text-center text-xl font-bold mb-6">Actualités</h2>
+    <h2 class="text-center text-2xl font-bold mb-6">Actualités</h2>
     <ul id="news-list" class="max-w-xl mx-auto space-y-2 list-disc pl-5"></ul>
     <p id="news-date" class="text-center text-xs text-gray-600 mt-4"></p>
   </section>
 
-  <!-- ===== SECTIONS ===== -->
+  <!-- =========== SECTIONS PLACEHOLDER =========== -->
   <section id="formations-pro" class="section-placeholder">
-    <h2>Formations Pro</h2>
-    <p class="loading">Chargement…</p>
+    <h2>Formations Pro</h2><p class="loading">Chargement…</p>
   </section>
 
   <section id="masters" class="section-placeholder">
-    <h2>Masters / Workshops</h2>
-    <p class="loading">Chargement…</p>
+    <h2>Masters / Workshops</h2><p class="loading">Chargement…</p>
   </section>
 
   <section id="danse-etudes" class="section-placeholder">
-    <h2>Danse-Études</h2>
-    <p class="loading">Chargement…</p>
+    <h2>Danse-Études</h2><p class="loading">Chargement…</p>
   </section>
 
-  <!-- ===== CONTACT (exemple) ===== -->
-  <section id="contact" class="py-24 bg-gray-100">
-    <!-- … -->
-  </section>
+  <!-- =========== CONTACT =========== -->
+  <footer id="contact" class="py-24 bg-gray-100">
+    <div class="max-w-3xl mx-auto px-6 text-center space-y-4">
+      <h2 class="text-xl font-bold">CONTACT</h2>
+      <address class="not-italic">
+        123 Rue de la Danse, Paris<br>
+        01&nbsp;45&nbsp;00&nbsp;87&nbsp;89<br>
+        <a href="mailto:contact@lamanufacture.fr" class="text-blue-600 underline">
+          contact@lamanufacture.fr
+        </a>
+      </address>
+      <div class="flex justify-center space-x-4 text-blue-600 underline">
+        <a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a>
+      </div>
+    </div>
+    <p class="text-center text-xs text-gray-600 mt-8">
+      © 2025 La Manufacture. Tous droits réservés.
+    </p>
+  </footer>
 
-  <!-- ===== SCRIPTS ===== -->
+  <!-- =========== LIBS & SCRIPTS =========== -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"
           integrity="sha256-tmRiGUvf65URZTnm78xiUJjdHPxh6M0Hw4dW2+upf7g="
           crossorigin="anonymous"></script>

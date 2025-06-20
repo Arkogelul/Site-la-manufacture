@@ -1,15 +1,15 @@
 /* ============ CONFIG ============ */
-const SHEET_ID     = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms'; // <— à toi
+const SHEET_ID     = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms'; // ← remplace si besoin
 const ACTUS_GID    = '0';            // onglet « actus »
 const SECTIONS_GID = '197731547';    // onglet « sections »
 
-/* -------- helpers -------- */
+/* -------- Helpers -------- */
 const csvUrl = gid =>
   `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${gid}&t=${Date.now()}`;
 
 const toParagraphs = txt =>
   txt.trim()
-     .split(/\n\s*\n/)             // paragraphe = saut de ligne vide
+     .split(/\n\s*\n/)                 // paragraphe = ligne vide
      .map(p => `<p>${p.trim()}</p>`)
      .join('');
 
@@ -35,29 +35,29 @@ async function loadNews(){
 /* -------- SECTIONS -------- */
 async function loadSections(){
   const res  = await fetch(csvUrl(SECTIONS_GID));
-  const text = await res.text();
+  const text = await res.text();                             // ✅ lecture unique
 
-  const rows = Papa.parse(text, {header:true}).data.filter(r => r.id);
+  const rows = Papa.parse(text, {header:true}).data
+                 .filter(r => r.id);
+
   if (!rows.length){
-    console.warn('Pas de données dans l’onglet “sections”.');
+    console.warn('Aucune ligne trouvée dans l’onglet « sections ».');
     return;
   }
 
   rows.forEach((r, i) => {
     const sec = document.getElementById(r.id);
     if (!sec){
-      console.warn(`⚠️  Section #${r.id} absente du HTML`);
+      console.warn(`⚠️ Section #${r.id} absente du HTML`);
       return;
     }
 
-    /* structure et classes seulement maintenant
-       (le <section> était vide dans le HTML) */
-    sec.classList.add('md:grid', 'md:grid-cols-2', 'gap-10', 'py-16');
-
-    /* alternance : texte à gauche / droite */
+    /* structure + classes (remplace le placeholder) */
+    sec.classList.remove('section-placeholder');
+    sec.classList.add('md:grid', 'md:grid-cols-2', 'gap-10', 'py-16', 'section-loaded');
     if (i % 2) sec.classList.add('md:[&>*:first-child]:order-2');
 
-    /* bloc texte */
+    /* contenu texte */
     const article = document.createElement('article');
     article.className = 'prose max-w-none';
     article.innerHTML = `
@@ -66,21 +66,18 @@ async function loadSections(){
       ${r.content ? toParagraphs(r.content) : ''}
     `;
 
-    /* bloc média */
+    /* média */
     const media = document.createElement('div');
     media.className = 'media max-md:mt-6';
-
     if (r.image){
-      media.innerHTML = `<img src="${r.image}" alt="${r.titre}">`;
+      media.innerHTML = `<img src="${r.image}" alt="${r.titre}" class="rounded-lg shadow">`;
     }else if (r.video){
-      media.innerHTML = `<video autoplay muted loop playsinline>
+      media.innerHTML = `<video autoplay muted loop playsinline class="rounded-lg shadow">
                            <source src="${r.video}" type="video/mp4">
                          </video>`;
     }
 
-    /* on vide la section si rechargement, puis on injecte */
-    sec.replaceChildren(article, media);
-    sec.classList.add('section-loaded');
+    sec.replaceChildren(article, media);   // injecte le contenu
   });
 }
 

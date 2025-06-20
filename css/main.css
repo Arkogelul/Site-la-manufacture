@@ -1,7 +1,13 @@
-/* Compléments minimes – Tailwind couvre 95 % des besoins */
-.media video,
-.media img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+/* ===== Placeholder avant remplissage ===== */
+.section-placeholder{
+  min-height:24rem;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  background:#f3f4f6;         /* gris clair */
 }
+.section-placeholder h2{ font-size:1.25rem; font-weight:600; margin-bottom:.25rem; }
+.loading{ font-size:.875rem; color:#666; }
+
+/* Après injection : fond transparent */
+.section-loaded{ background:transparent; }
