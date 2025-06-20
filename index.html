@@ -18,10 +18,10 @@
 <div id="bloc-contenu">Chargement…</div>
 
 <script>
-/* ← colle ici l’ID complet de TON classeur */
+/* ===== SEULE ligne à modifier si tu changes de classeur ===== */
 const SHEET_ID = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms';
 
-/* OpenSheet renvoie chaque onglet en JSON */
+/* OpenSheet ⇢ JSON */
 const url = onglet => `https://opensheet.elk.sh/${SHEET_ID}/${onglet}`;
 
 /* -------- Bloc Actu -------- */
@@ -29,10 +29,11 @@ fetch(url('Actu'))
   .then(r => r.json())
   .then(rows => {
     const html = rows
-       .map(r => Object.values(r).join(' — '))      // « Date — Titre — Lieu »
-       .map(t => `<li>${t}</li>`)
-       .join('');
-    document.getElementById('bloc-actu').innerHTML = html || '<li>(aucune actu)</li>';
+      .map(r => Object.values(r).join(' — '))   // Date — Titre — Lieu
+      .map(t => `<li>${t}</li>`)
+      .join('');
+    document.getElementById('bloc-actu').innerHTML =
+      html || '<li>(aucune actu)</li>';
   })
   .catch(err => console.error('Actu :', err));
 
@@ -41,10 +42,11 @@ fetch(url('Contenu'))
   .then(r => r.json())
   .then(rows => {
     const html = rows
-       .map(r => Object.values(r).join(' '))        // concatène les cellules
-       .map(t => `<p>${t}</p>`)
-       .join('');
-    document.getElementById('bloc-contenu').innerHTML = html || '<p>(aucun contenu)</p>';
+      .map(r => Object.values(r).join(' '))     // concatène les cellules
+      .map(t => `<p>${t}</p>`)
+      .join('');
+    document.getElementById('bloc-contenu').innerHTML =
+      html || '<p>(aucun contenu)</p>';
   })
   .catch(err => console.error('Contenu :', err));
 </script>
