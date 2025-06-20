@@ -1,0 +1,7 @@
+/* Compléments minimes – Tailwind couvre 95 % des besoins */
+.media video,
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
