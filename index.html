@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Démo Sheets → Site</title>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:2rem auto;max-width:700px;line-height:1.5}
-    h1{margin:2rem 0 1rem;font-size:1.5rem;border-bottom:2px solid #000;padding-bottom:.25rem}
-    ul{padding-left:1.2rem}
-    li{margin:.25rem 0}
-  </style>
+<meta charset="utf-8">
+<title>Site piloté par Google Sheet</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;margin:2rem auto;max-width:700px;line-height:1.6}
+  h1{margin:2rem 0 .75rem;font-size:1.4rem;border-bottom:2px solid #000;padding-bottom:.25rem}
+  ul{padding-left:1.2rem} li{margin:.3rem 0}
+</style>
 </head>
 <body>
 
-  <h1>Actualité</h1>
-  <ul id="bloc-actu"><li>Chargement…</li></ul>
+<h1>Actualité</h1>
+<ul id="bloc-actu"><li>Chargement…</li></ul>
 
-  <h1>Contenu</h1>
-  <div id="bloc-contenu">Chargement…</div>
+<h1>Contenu</h1>
+<div id="bloc-contenu">Chargement…</div>
 
-  <!-- PapaParse : parseur CSV -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script>
+/* ← colle ici l’ID complet de TON classeur */
+const SHEET_ID = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms';
 
-  <!-- Notre script -->
-  <script src="script.js"></script>
+/* OpenSheet renvoie chaque onglet en JSON */
+const url = onglet => `https://opensheet.elk.sh/${SHEET_ID}/${onglet}`;
+
+/* -------- Bloc Actu -------- */
+fetch(url('Actu'))
+  .then(r => r.json())
+  .then(rows => {
+    const html = rows
+       .map(r => Object.values(r).join(' — '))      // « Date — Titre — Lieu »
+       .map(t => `<li>${t}</li>`)
+       .join('');
+    document.getElementById('bloc-actu').innerHTML = html || '<li>(aucune actu)</li>';
+  })
+  .catch(err => console.error('Actu :', err));
+
+/* -------- Bloc Contenu -------- */
+fetch(url('Contenu'))
+  .then(r => r.json())
+  .then(rows => {
+    const html = rows
+       .map(r => Object.values(r).join(' '))        // concatène les cellules
+       .map(t => `<p>${t}</p>`)
+       .join('');
+    document.getElementById('bloc-contenu').innerHTML = html || '<p>(aucun contenu)</p>';
+  })
+  .catch(err => console.error('Contenu :', err));
+</script>
+
 </body>
 </html>
