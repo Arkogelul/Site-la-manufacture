@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Manufacture</title>
 
-  <!-- Tailwind + plugin Typography directement depuis le CDN -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
-  <!-- Styles complémentaires -->
-  <link rel="stylesheet" href="css/main.css">
+  <!-- style perso -->
+  <link rel="stylesheet" href="main.css">
 </head>
 <body class="font-sans bg-white text-black">
 
-  <!-- ===== NAV DESKTOP ===== -->
+  <!-- ===== NAV ===== -->
   <nav class="hidden md:flex fixed top-0 left-0 w-full justify-center space-x-10
               uppercase text-sm font-semibold py-4 z-50 text-white">
-    <a href="#artiste"        class="hover:text-gray-300">Formations Pro</a>
-    <a href="#tous-publics"   class="hover:text-gray-300">Éducation Artistique</a>
-    <a href="#cantal"         class="hover:text-gray-300">Résidences</a>
+    <a href="#formations-pro" class="hover:text-gray-300">Formations Pro</a>
+    <a href="#masters"        class="hover:text-gray-300">Masters / Workshops</a>
+    <a href="#danse-etudes"   class="hover:text-gray-300">Danse-Études</a>
     <a href="#contact"        class="hover:text-gray-300">Contact</a>
   </nav>
 
-  <!-- ===== HAMBURGER MOBILE ===== -->
+  <!-- ===== HAMBURGER (mobile) ===== -->
   <button id="hamburger"
           class="fixed top-4 left-4 z-50 p-2 rounded shadow bg-white/80 md:hidden">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -36,72 +36,37 @@
   <aside id="mobile-menu"
          class="fixed top-0 left-0 h-full w-64 bg-white z-40 transform -translate-x-full
                 transition-transform duration-300 p-6 pt-20 space-y-6 md:hidden">
-    <a href="#artiste"      class="block py-2">Formations Pro</a>
-    <a href="#tous-publics" class="block py-2">Éducation Artistique</a>
-    <a href="#cantal"       class="block py-2">Résidences</a>
-    <a href="#contact"      class="block py-2">Contact</a>
+    <a href="#formations-pro" class="block py-2">Formations Pro</a>
+    <a href="#masters"        class="block py-2">Masters / Workshops</a>
+    <a href="#danse-etudes"   class="block py-2">Danse-Études</a>
+    <a href="#contact"        class="block py-2">Contact</a>
   </aside>
 
-  <!-- ===== HEADER ===== -->
-  <header class="relative h-screen flex items-center justify-center text-white text-center">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
-      <source src="videos/tiffaine.mp4" type="video/mp4">
-    </video>
-    <div class="space-y-4 px-4">
-      <img src="images/LOGO_LA-MANUFACTURE_BLANC.png" alt="Logo"
-           class="mx-auto w-40 lg:w-60">
-      <h1 class="text-5xl md:text-6xl font-bold uppercase">La Manufacture</h1>
-      <p class="text-xl md:text-2xl italic">Vision &amp; Identité Artistique</p>
-    </div>
-  </header>
+  <!-- ===== HERO / HEADER (ton contenu) ===== -->
+  <!-- … -->
 
-  <!-- ===== ACTUALITÉS ===== -->
-  <aside class="hidden md:block fixed right-0 top-1/2 -translate-y-1/2 w-64
-                bg-white/90 backdrop-blur-md p-6 shadow-lg z-40">
-    <h2 class="text-xl font-semibold mb-4">Actualités</h2>
-    <ul id="news-list" class="text-sm space-y-2"><li>Chargement…</li></ul>
-    <div id="news-date" class="text-xs italic text-right mt-4"></div>
-  </aside>
-
-  <!-- ===== SECTIONS DYNAMIQUES ===== -->
-  <div id="sections"></div>
-
-  <!-- Template section -->
-  <template id="tpl-section">
-    <section class="grid md:grid-cols-2 min-h-[480px]">
-      <!-- zone texte -->
-      <article class="prose lg:prose-lg max-w-none flex flex-col justify-center
-                     px-6 md:px-12 gap-4"></article>
-      <!-- zone media -->
-      <div class="media"></div>
-    </section>
-  </template>
-
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="bg-gray-100 py-20">
-    <div class="max-w-4xl mx-auto px-6 md:px-0 grid md:grid-cols-2 gap-10">
-      <div>
-        <h3 class="text-3xl font-bold uppercase mb-6">Contact</h3>
-        <p class="mb-2">123 Rue de la Danse, Paris</p>
-        <p class="mb-2">01 23 45 67 89</p>
-        <p class="mb-4">contact@lamanufacture.fr</p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-blue-600 hover:text-blue-800">Facebook</a>
-          <a href="#" class="text-blue-600 hover:text-blue-800">Instagram</a>
-          <a href="#" class="text-blue-600 hover:text-blue-800">YouTube</a>
-        </div>
-      </div>
-    </div>
+  <!-- ===== ACTUALITÉS (existant) ===== -->
+  <section id="actus" class="py-16 bg-gray-50">
+    <h2 class="text-center text-xl font-bold mb-6">Actualités</h2>
+    <ul id="news-list" class="max-w-xl mx-auto space-y-2 list-disc pl-5"></ul>
+    <p id="news-date" class="text-center text-xs text-gray-600 mt-4"></p>
   </section>
 
-  <footer class="bg-gray-200 text-center text-sm py-6">
-    &copy; 2025 La Manufacture. Tous droits réservés.
-  </footer>
+  <!-- ===== SECTIONS VIDES ===== -->
+  <section id="formations-pro"></section>
+  <section id="masters"></section>
+  <section id="danse-etudes"></section>
 
-  <!-- PapaParse -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+  <!-- ===== CONTACT (exemple) ===== -->
+  <section id="contact" class="py-24 bg-gray-100">
+    <!-- … -->
+  </section>
 
-  <!-- Script principal -->
-  <script type="module" src="js/sheet-loader.js"></script>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"
+          integrity="sha256-tmRiGUvf65URZTnm78xiUJjdHPxh6M0Hw4dW2+upf7g="
+          crossorigin="anonymous"></script>
+
+  <script type="module" src="sheet-loader.js"></script>
 </body>
 </html>
