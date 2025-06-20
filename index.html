@@ -8,8 +8,8 @@
   <!-- Tailwind + plugin Typography directement depuis le CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
-  <!-- Styles complémentaires -->
-  <link rel="stylesheet" href="css/main.css">
+  <!-- Styles complémentaires –– le fichier se trouve à la racine -->
+  <link rel="stylesheet" href="main.css">
 </head>
 <body class="font-sans bg-white text-black">
 
@@ -17,8 +17,8 @@
   <nav class="hidden md:flex fixed top-0 left-0 w-full justify-center space-x-10
               uppercase text-sm font-semibold py-4 z-50 text-white">
     <a href="#artiste"        class="hover:text-gray-300">Formations Pro</a>
-    <a href="#tous-publics"   class="hover:text-gray-300">Éducation Artistique</a>
-    <a href="#cantal"         class="hover:text-gray-300">Résidences</a>
+    <a href="#masters"        class="hover:text-gray-300">Masters / Workshops</a>
+    <a href="#danse-etudes"   class="hover:text-gray-300">Danse-Études</a>
     <a href="#contact"        class="hover:text-gray-300">Contact</a>
   </nav>
 
@@ -37,8 +37,8 @@
          class="fixed top-0 left-0 h-full w-64 bg-white z-40 transform -translate-x-full
                 transition-transform duration-300 p-6 pt-20 space-y-6 md:hidden">
     <a href="#artiste"      class="block py-2">Formations Pro</a>
-    <a href="#tous-publics" class="block py-2">Éducation Artistique</a>
-    <a href="#cantal"       class="block py-2">Résidences</a>
+    <a href="#masters"      class="block py-2">Masters / Workshops</a>
+    <a href="#danse-etudes" class="block py-2">Danse-Études</a>
     <a href="#contact"      class="block py-2">Contact</a>
   </aside>
 
@@ -98,10 +98,13 @@
     &copy; 2025 La Manufacture. Tous droits réservés.
   </footer>
 
-  <!-- PapaParse -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+  <!-- ===== SCRIPTS ===== -->
+  <!-- PapaParse (CSV) -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"
+          integrity="sha256-tmRiGUvf65URZTnm78xiUJjdHPxh6M0Hw4dW2+upf7g="
+          crossorigin="anonymous"></script>
 
-  <!-- Script principal -->
-  <script type="module" src="js/sheet-loader.js"></script>
+  <!-- Notre loader –– le fichier est aussi à la racine -->
+  <script type="module" src="sheet-loader.js"></script>
 </body>
 </html>

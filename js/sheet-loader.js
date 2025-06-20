@@ -1,7 +1,7 @@
 /* ============ CONFIG ============ */
-const SHEET_ID     = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms'; // ID de votre classeur
-const ACTUS_GID    = '0';            // onglet « actus » (premier onglet)
-const SECTIONS_GID = '197731547';    // gid réel de l’onglet « sections »
+const SHEET_ID     = '1GE27eBd1fHndh4eRhf-kYtbF28HmfvH1908HUgnfQms'; // ID du classeur
+const ACTUS_GID    = '0';            // onglet « actus »
+const SECTIONS_GID = '197731547';    // onglet « sections »
 
 /* -------- helpers -------- */
 const csvUrl = gid =>
@@ -15,13 +15,16 @@ async function loadNews(){
   const res  = await fetch(csvUrl(ACTUS_GID));
   const rows = Papa.parse(await res.text(), {header:true}).data
                  .filter(r => r.Titre || r.Title);
+
   const ul   = document.getElementById('news-list');
   ul.innerHTML = '';
+
   rows.slice(0,3).forEach(r => {
     const li = document.createElement('li');
     li.textContent = `${r.Date} – ${r.Titre || r.Title}`;
     ul.appendChild(li);
   });
+
   document.getElementById('news-date').textContent =
     'MÀJ : ' + new Date().toLocaleDateString('fr-FR');
 }
@@ -29,11 +32,14 @@ async function loadNews(){
 /* -------- SECTIONS -------- */
 async function loadSections(){
   const res  = await fetch(csvUrl(SECTIONS_GID));
-  const text = await res.text();
+  const text = await res.text();                                   // lecture unique
+
   console.log('CSV (150 car.) ➜', text.slice(0,150));
-  console.table(Papa.parse(text,{header:true}).data);
-  const rows = Papa.parse(await res.text(), {header:true}).data
+  console.table(Papa.parse(text, {header:true}).data);
+
+  const rows = Papa.parse(text, {header:true}).data                // ré-utilisation
                  .filter(r => r.id);
+
   const tpl  = document.getElementById('tpl-section').content;
   const box  = document.getElementById('sections');
 
@@ -57,8 +63,9 @@ async function loadSections(){
                          </video>`;
     }
 
-    /* alternance vidéo gauche / droite */
-    if (i % 2 === 1) sec.classList.add('md:[&>*:first-child]:order-2');
+    /* alternance média gauche / droite */
+    if (i % 2 === 1)
+      sec.classList.add('md:[&>*:first-child]:order-2');
 
     sec.id = r.id;
     box.appendChild(view);
