@@ -29,6 +29,9 @@ async function loadNews(){
 /* -------- SECTIONS -------- */
 async function loadSections(){
   const res  = await fetch(csvUrl(SECTIONS_GID));
+  const text = await res.text();
+  console.log('CSV (150 car.) ➜', text.slice(0,150));
+  console.table(Papa.parse(text,{header:true}).data);
   const rows = Papa.parse(await res.text(), {header:true}).data
                  .filter(r => r.id);
   const tpl  = document.getElementById('tpl-section').content;
